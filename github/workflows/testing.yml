@@ -1,0 +1,51 @@
+name: Test and Merge
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "test.py"
+
+jobs:
+  test:
+    name: Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          py -m pip install --upgrade pip
+          py -m pip install -r test/requirements.txt
+
+      - name: Run tests
+        run: |
+          py test/test.py
+
+  create_pr:
+    name: Create Pull Request
+    runs-on: ubuntu-latest
+    needs: test
+    if: success()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: test
+          base: dev
+          title: "Merge from dev to test"
+          body: "Automated pull request from dev to test branch"
+          reviewers: ${{ github.repository_owner }}
