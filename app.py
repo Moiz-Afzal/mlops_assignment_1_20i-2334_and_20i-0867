@@ -12,6 +12,7 @@ def convert_timestamp_to_datetime(timestamp_ms):
     return datetime.datetime.fromtimestamp(timestamp_seconds)
 
 
+
 # Define the API URL
 url = (
     "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/"
