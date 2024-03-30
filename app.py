@@ -46,9 +46,10 @@ df.dropna(inplace=True)
 X = df.drop(columns=['next_close', 't'])
 y = df['next_close']
 
-# Split the data into training and testing sets 
-# (80% train, 20% test)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = \
+    train_test_split(X, y, test_size=0.2, 
+                     random_state=42)
 
 # Initialize and train the model
 model = RandomForestRegressor(n_estimators=100, random_state=42)
