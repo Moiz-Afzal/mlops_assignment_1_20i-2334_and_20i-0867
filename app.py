@@ -10,8 +10,12 @@ def convert_timestamp_to_datetime(timestamp_ms):
     timestamp_seconds = timestamp_ms / 1000
     return datetime.datetime.fromtimestamp(timestamp_seconds)
 
+
 # Define the API URL
-url = "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/15/minute/2020-01-09/2023-01-20?adjusted=true&sort=asc&limit=1200000&apiKey=USGhqM149TAOaKXNbLratZdnuuTmJL9k"
+url = (
+    "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/15/minute/2020-01-09/"
+    "2023-01-20?adjusted=true&sort=asc&limit=1200000&apiKey=USGhqM149TAOaKXNbLratZdnuuTmJL9k"
+)
 
 # Fetch data from the API
 response = requests.get(url)
