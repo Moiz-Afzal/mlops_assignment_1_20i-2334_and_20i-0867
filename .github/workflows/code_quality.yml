@@ -8,7 +8,7 @@ on:
 jobs:
   flake8:
     name: Flake8 Code Quality Check
-    runs-on: windows-latest
+    runs-on: windows-latest, ubuntu-lastest
 
     steps:
       - name: Checkout repository
