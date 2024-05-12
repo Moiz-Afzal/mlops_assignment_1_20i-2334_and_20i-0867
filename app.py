@@ -12,6 +12,7 @@ def convert_timestamp_to_datetime(timestamp_ms):
     return datetime.datetime.fromtimestamp(timestamp_seconds)
 
 
+
 # Define the API URL
 url = (
     "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/"
@@ -57,6 +58,8 @@ model.fit(X_train, y_train)
 
 # Predict the test set
 y_pred = model.predict(X_test)
+
+print(y_pred)
 
 # Calculate Mean Squared Error
 mse = mean_squared_error(y_test, y_pred)
